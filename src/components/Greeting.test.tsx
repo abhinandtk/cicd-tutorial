@@ -10,3 +10,4 @@ test("renders Guest when name is empty", () => {
   render(<Greeting name="" />)
   expect(screen.getByRole("heading", { name: "Hello,Guest" })).toBeInTheDocument()
 })
+
