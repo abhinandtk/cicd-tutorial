@@ -26,3 +26,20 @@ jobs:
       
       - name: Run tests
         run: npm test
+  
+  docker-build-and-push:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v6
+
+    - name: Docker login to Dockerhub
+      run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERHUB_TOKEN }}"
+
+    - name: Build Docker image
+      run: docker build -t ${{secrets.DOCKERHUB_USERNAME}}/cicd-react-app:latest
+    
+    - name: Push Docker image to Dockerhub
+      run: docker push ${{secrets.DOCKERHUB_USERNAME}}/cicd-react-app:latest
