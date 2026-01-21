@@ -2,7 +2,7 @@
 export default function Greeting({name}:{name:string}) {
   return (
     <div>
-      <h1>Hello hi,{name || "Guest"}</h1>
+      <h1>Hello,{name || "Guest"}</h1>
     </div>
   )
 }
